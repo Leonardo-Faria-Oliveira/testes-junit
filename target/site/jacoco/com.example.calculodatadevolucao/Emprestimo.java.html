@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Emprestimo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">demo</a> &gt; <a href="index.source.html" class="el_package">com.example.calculodatadevolucao</a> &gt; <span class="el_source">Emprestimo.java</span></div><h1>Emprestimo.java</h1><pre class="source lang-java linenums">package com.example.calculodatadevolucao;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+
+<span class="fc" id="L7">public class Emprestimo {</span>
+<span class="fc" id="L8">	Date dataEmprestimo = new Date();</span>
+<span class="fc" id="L9">	Date dataPrevista = new Date();</span>
+<span class="fc" id="L10">	Date dataAux = new Date();</span>
+	String nome;
+<span class="fc" id="L12">	public List&lt;Item&gt; item = new ArrayList&lt;Item&gt;();</span>
+<span class="fc" id="L13">    int emprestimo = 0;</span>
+	
+	public Date getDataEmprestimo() {
+<span class="nc" id="L16">		return dataEmprestimo;</span>
+	}
+
+	public void setDataEmprestimo(Date dataEmprestimo) {
+<span class="nc" id="L20">		this.dataEmprestimo = dataEmprestimo;</span>
+<span class="nc" id="L21">	}</span>
+	
+    public boolean emprestar(List&lt;Livro&gt; livros) {
+<span class="fc bfc" id="L24" title="All 2 branches covered.">    	for(int i=0; i&lt;livros.size();i++) {</span>
+<span class="fc" id="L25">    		item.add(new Item(livros.get(i)));</span>
+<span class="fc" id="L26">    		this.emprestimo += 1; </span>
+    	}
+
+<span class="fc" id="L29">    	CalculaDataDevolucao();</span>
+<span class="fc" id="L30">    	System.out.println(&quot;Numero de Livros Emprestados: &quot; + this.emprestimo);</span>
+<span class="fc" id="L31">    	System.out.println(&quot;Data de Emprestimo: &quot; + this.dataEmprestimo);</span>
+<span class="fc" id="L32">    	System.out.println(&quot;Data de Devolucao: &quot; + this.dataPrevista);</span>
+<span class="fc" id="L33">    	return true;</span>
+	}
+    
+	private Date CalculaDataDevolucao() {   
+<span class="fc" id="L37">		Date date = new Date();</span>
+<span class="pc bpc" id="L38" title="1 of 2 branches missed.">		if(item.size() == 0) {</span>
+<span class="nc" id="L39">			throw new IllegalArgumentException(&quot;Nenhum livro emprestado&quot;);</span>
+		}
+<span class="fc bfc" id="L41" title="All 2 branches covered.">		if(item.size() &gt; 5) {</span>
+<span class="fc" id="L42">			throw new IllegalArgumentException(&quot;O limite maximo de livros que pode ser emprestado e 5&quot;);</span>
+		}
+<span class="fc bfc" id="L44" title="All 2 branches covered.">		for(int j = 0; j &lt; item.size(); j++) {   </span>
+<span class="fc" id="L45">			dataAux = item.get(j).calculaDataDevolucao(date);</span>
+<span class="pc bpc" id="L46" title="1 of 2 branches missed.">		    if(dataPrevista.compareTo(dataAux) &lt; 0)</span>
+<span class="fc" id="L47">			  dataPrevista = dataAux;</span>
+		}
+<span class="fc bfc" id="L49" title="All 2 branches covered.">		if(item.size() &gt; 2) {</span>
+<span class="fc" id="L50">			int tam = item.size() - 2;</span>
+<span class="fc" id="L51">			Calendar calendar = Calendar.getInstance();</span>
+<span class="fc" id="L52">			calendar.setTime(dataPrevista);</span>
+<span class="fc" id="L53">			calendar.add(Calendar.DATE, (tam * 2));</span>
+<span class="fc" id="L54">	        dataPrevista = calendar.getTime();</span>
+		}
+<span class="fc bfc" id="L56" title="All 2 branches covered.">		for(int j = 0 ; j &lt; item.size(); j++)</span>
+<span class="fc" id="L57">			item.get(j).setDataDevolucao(dataPrevista);</span>
+		
+<span class="fc" id="L59">		return dataPrevista;</span>
+	}	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

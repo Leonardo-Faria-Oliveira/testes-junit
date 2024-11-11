@@ -1,0 +1,9 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+demo,com.example.calculodatadevolucao,Debito,0,14,0,2,0,6,0,3,0,2
+demo,com.example.calculodatadevolucao,Item,7,34,0,0,3,12,2,4,2,4
+demo,com.example.calculodatadevolucao,Emprestimo,12,164,2,12,4,31,4,8,2,3
+demo,com.example.calculodatadevolucao,Main,110,0,2,0,14,0,3,0,2,0
+demo,com.example.calculodatadevolucao,Controle,2,64,1,11,1,19,1,7,0,2
+demo,com.example.calculodatadevolucao,Aluno,7,33,0,2,3,10,2,5,2,4
+demo,com.example.calculodatadevolucao,Livro,0,24,0,2,0,8,0,4,0,3
+demo,com.example.calculodatadevolucao,Titulo,4,11,0,0,2,4,1,2,1,2
