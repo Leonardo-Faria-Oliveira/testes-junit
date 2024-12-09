@@ -21,6 +21,20 @@ public class Emprestimo {
 	}
 	
     public boolean emprestar(List<Livro> livros) {
+
+		if(livros == null) {
+			throw new IllegalArgumentException("A lista de livros não pode ser nula");
+		}
+
+		if(livros.size() <= 0) {
+			throw new IllegalArgumentException("A lista de livros não pode ser vazia");
+		}
+
+		if(livros.size() > 5) {
+			throw new IllegalArgumentException("O limite máximo de livros que pode ser emprestado é 5");
+		}
+		
+
     	for(int i=0; i<livros.size();i++) {
     		item.add(new Item(livros.get(i)));
     		this.emprestimo += 1; 
@@ -57,5 +71,5 @@ public class Emprestimo {
 			item.get(j).setDataDevolucao(dataPrevista);
 		
 		return dataPrevista;
-	}	
+	}
 }

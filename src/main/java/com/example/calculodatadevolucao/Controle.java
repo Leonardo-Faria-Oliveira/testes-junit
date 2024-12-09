@@ -16,14 +16,14 @@ public class Controle {
 	  if (!a.verficaAluno())
 	  {
 		  System.out.println("Aluno Inexistente");
-		  retorno = false;
+		  return false;
        }
 	  
 	  //Verifica se o aluno possui algum Debito
-	  if (!a.verificaDebito())
+	  if (a.verificaDebito())
 	  {
 		  System.out.println("Aluno em Debito");
-		  retorno = false;
+		  return false;
        }
 	  
 	  //Caso o aluno n�o tenha d�bitos e exista
@@ -39,6 +39,11 @@ public class Controle {
 		     //caso o livro n�o seja exemplar da biblioteca permite emprestar  
 		     if (!l.verificaLivro())
 			   livros.add(l); 
+		   }
+
+		   if (num >= 5 || num <= 0)
+		   {   
+		     return false;
 		   }
 			
 		   /*Chama o m�todo delegado do aluno de emprestar cliente, passando o conjunto de livros como parametro caso tenha pelo menos um livro a ser emprestado*/
